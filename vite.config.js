@@ -6,7 +6,6 @@ export default defineConfig({
     tailwindcss(),
   ],
   build: {
-    outDir: 'docs',       // ça génère dans /docs
+    outDir: 'docs',
   }
-  
 })
