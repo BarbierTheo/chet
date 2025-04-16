@@ -5,5 +5,8 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  build: {
+    outDir: 'docs',       // ça génère dans /docs
+  }
   
 })
