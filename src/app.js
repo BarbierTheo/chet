@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother, SplitText);
 ScrollSmoother.create({
     wrapper: "#smooth-wrapper",
     content: "#smooth-content",
-    smooth: 2,
+    smooth: 3,
     effects: true,
     smoothTouch: 0.1,
     normalizeScroll: true,
@@ -18,22 +18,23 @@ ScrollSmoother.create({
 
 ScrollTrigger.create({
     trigger: ".quotebar",
-    start: "top 90%",
+    start: "top 80%",
+    end: "bottom 50%",
     onEnter: () => {
         gsap.to(".quotebar", {
             width: '25%',
-            duration: 3
+            duration:1,
         })
 
         gsap.to(".quote1", {
             opacity: 1,
-            duration: 2
+            delay: 0.5,
         })
 
         gsap.to(".quote2", {
             opacity: 1,
-            duration: 2,
-            delay: 0.5
+            scrub: true,
+            delay: 1,
         })
     }
 })
@@ -45,6 +46,45 @@ gsap.to(".horizontal-scroll-content", {
         start: "top top",
         end: "bottom top",
         scrub: 2,
-        pin: true,
+        pin: true
     }
 });
+
+
+const split = new SplitText("#text-reveal").words
+
+gsap.to(split, {
+    color: "white",
+    stagger: 1,
+    scrollTrigger: {
+        trigger: "#text-reveal",
+        scrub: 3,
+        start: "top 30%",
+        end: "bottom 60%"
+    }
+})
+
+gsap.to("#linksong", {
+    opacity: 1,
+    scrollTrigger: {
+        trigger: "#linksong",
+        scrub: 1,
+        start: "top 80%",
+        end: "bottom 50%",
+    }
+})
+
+
+gsap.utils.toArray(".blocstory").forEach((blocstory, i) => {
+    gsap.to(blocstory, {
+      opacity: 1,
+      duration: 1,
+      scrollTrigger: {
+        trigger: blocstory,
+        start: "top 50%",
+        end: "bottom 10%",
+        scrub: true,
+      },
+      delay: i * 0.3
+    });
+  });
